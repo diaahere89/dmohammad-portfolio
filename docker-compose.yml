@@ -23,6 +23,15 @@ services:
             - sail
         depends_on:
             - mysql
+
+    mailpit:
+        image: axllent/mailpit
+        ports:
+            - "1025:1025" # SMTP
+            - "8125:8025" # Web interface
+        networks:
+            - sail
+
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -47,6 +56,7 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+
 networks:
     sail:
         driver: bridge

@@ -98,28 +98,32 @@ const activePortfolio = () => {
     portfolioDetails[index].classList.add('active');
 }
 
-arrowRight.addEventListener('click', () => {
-    if (index < 4) {
-        index++;
-        arrowLeft.classList.remove('disabled');
-    }
-    else {
-        index = 5;
-        arrowRight.classList.add('disabled');
-    }
+if ( arrowRight )  {
+    arrowRight.addEventListener('click', () => {
+        if (index < 4) {
+            index++;
+            arrowLeft.classList.remove('disabled');
+        }
+        else {
+            index = 5;
+            arrowRight.classList.add('disabled');
+        }
+    
+        activePortfolio();
+    });
+}
 
-    activePortfolio();
-});
-
-arrowLeft.addEventListener('click', () => {
-    if (index > 1) {
-        index--;
-        arrowRight.classList.remove('disabled');
-    }
-    else {
-        index = 0;
-        arrowLeft.classList.add('disabled');
-    }
-
-    activePortfolio();
-});
+if ( arrowLeft ) {
+    arrowLeft.addEventListener('click', () => {
+        if (index > 1) {
+            index--;
+            arrowRight.classList.remove('disabled');
+        }
+        else {
+            index = 0;
+            arrowLeft.classList.add('disabled');
+        }
+    
+        activePortfolio();
+    });
+}

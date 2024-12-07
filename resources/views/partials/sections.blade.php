@@ -1,5 +1,5 @@
 <!-- home section -->
-<section class="home active">
+<section class="home {{ isset($msg_sent) && $msg_sent ? "" : "active" }}">
     <div class="home-detail">
         <h1>Hi, I'm Diaa Mohammad</h1>
         <h2>I am a 
@@ -403,7 +403,7 @@
 </section>
 
 <!-- contact section -->
-<section class="contact">
+<section class="contact {{ isset($msg_sent) && $msg_sent ? "active" : "" }}">
     <div class="contact-container">
         <div class="contact-box">
             <h2>Let's Work Together</h2>
@@ -434,7 +434,12 @@
         </div>
 
         <div class="contact-box">
-            <form action="">
+            <form action="{{ url('/') }}" method="POST">
+                @if ( $msg_sent ?? null )
+                    <div class="alert alert-success">
+                        <p>{{ $msg_sent }}</p>
+                    </div>
+                @endif
                 <h2 class="heading">Contact <span>Me!</span></h2>
                 <div class="field-box">
                     @csrf

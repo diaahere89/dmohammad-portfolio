@@ -1,6 +1,6 @@
 <!-- header -->
 <header class="active">
-    <a href="/" class="logo">Diaa.</a>
+    <a href="/" class="logo">Mo. Diaa</a>
 
     <i class='bx bx-menu' id="menu-icon"></i>
 
