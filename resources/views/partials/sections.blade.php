@@ -293,7 +293,7 @@
             <div class="portfolio-detail active">
                 <p class="numb">01</p>
                 <h3>Full-Stack Project</h3>
-                <p>This full-stack project was developed for a construction company in the KSA using Laravel for the back-end, and AJAX, jQuery, HTML5, CSS3, and JavaScript for the front-end. The application features a dynamic and responsive user interface, seamless data handling, and efficient server-side processing. It showcases the integration of modern web technologies to deliver a robust and user-friendly experience.</p>
+                <p>This full-stack project was developed for a construction company in the KSA using <span class="highligh">Laravel</span> for the back-end, and <span class="highlight">AJAX, jQuery, HTML5, CSS3, and JavaScript</span> for the front-end. The application features a dynamic and responsive user interface, seamless data handling, and efficient server-side processing. It showcases the integration of modern web technologies to deliver a robust and user-friendly experience.</p>
                 <div class="tech">
                     <p>Laravel, JavaScript, HTML5, CSS3</p>
                 </div>
