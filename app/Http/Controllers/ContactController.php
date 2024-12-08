@@ -10,7 +10,7 @@ class ContactController extends Controller
 {
     public function submit(ContactRequest $request) 
     {
-        Mail::to(env('MAIL_FROM_ADDRESS', 'delgendy.it@gmail.com'))->send(new ContactMail(
+        Mail::to(env('MAIL_TO_ADDRESS', env('MAIL_FROM_ADDRESS')))->send(new ContactMail(
             $request->full_name,
             $request->email_address,
             $request->phone_number,
