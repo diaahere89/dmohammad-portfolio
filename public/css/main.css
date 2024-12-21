@@ -45,6 +45,11 @@ header {
     opacity: 0;
 }
 
+header nav a {
+    cursor: pointer !important;
+    transition: .5s !important;
+}
+
 header.active {
     animation: show-header 1.5s linear forwards;
     animation-delay: 1.2s;
