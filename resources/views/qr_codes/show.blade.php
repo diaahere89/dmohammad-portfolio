@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show QR Codes</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-6">QR Code Details</h1>
+        <div class="bg-white p-8 rounded-lg shadow-md">
+            <!-- Flex container for QR image and details -->
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- QR Image (Left Side) -->
+                <div class="w-full md:w-1/3 flex flex-col items-center">
+                    <!-- QR Image Container with Hover Effect -->
+                    <div class="relative group">
+                        <!-- Loading Spinner -->
+                        <div id="loadingSpinner" class="absolute inset-0 flex justify-center items-center bg-gray-200 bg-opacity-75 rounded-lg">
+                            <svg class="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </div>
+
+                        <!-- QR Image -->
+                        <img id="qrImage" src="{{ $qrImage->createDataUri() ?? '' }}" alt="QR Code" class="w-48 h-48 rounded-lg shadow-inner" onload="document.getElementById('loadingSpinner').style.display = 'none'">
+                    </div>
+
+                    <!-- Buttons (Download and Share) -->
+                    <div class="mt-4 flex gap-4">
+                        <!-- Download Button -->
+                        <a href="{{ $qrImage->createDataUri() ?? '#' }}" download="qr-code.png" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 shadow-md flex items-center gap-2">
+                            <i class="fas fa-download"></i>
+                            Download
+                        </a>
+
+                        <!-- Share Button -->
+                        <button onclick="shareQRCode()" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 shadow-md flex items-center gap-2">
+                            <i class="fas fa-share-alt"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Details (Right Side) -->
+                <div class="w-full md:w-2/3">
+                    <!-- Grid layout for labels and values -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {{-- <!-- Desired URL -->
+                        <div class="font-bold text-gray-700">Desired URL:</div>
+                        <div class="text-gray-900 break-words">{{ $qrImage->desired_url }}</div> --}}
+
+                        <!-- Created By -->
+                        <div class="font-bold text-gray-700">Created By:</div>
+                        <div class="text-gray-900">{{ $qrImage->created_by }}</div>
+
+                        <!-- Title -->
+                        <div class="font-bold text-gray-700">Title:</div>
+                        <div class="text-gray-900">{{ $qrImage->title }}</div>
+
+                        <!-- Description -->
+                        <div class="font-bold text-gray-700">Description:</div>
+                        <div class="text-gray-900">{{ $qrImage->description }}</div>
+
+                        <!-- Active Status -->
+                        <div class="font-bold text-gray-700">Active:</div>
+                        <div class="text-gray-900">{{ $qrImage->status == 'active' ? 'Yes' : 'No' }}</div>
+
+                        <!-- Expiration Date -->
+                        <div class="font-bold text-gray-700">Expires At:</div>
+                        <div class="text-gray-900">{{ $qrImage->expires_at }}</div>
+
+                        <!-- Scan Count -->
+                        <div class="font-bold text-gray-700">Scan Count:</div>
+                        <div class="text-gray-900">{{ $qrImage->scan_count ?? 0 }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script defer>
+        // Share QR Code functionality
+        function shareQRCode() {
+            const qrImageUrl = document.getElementById('qrImage').src;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'QR Code',
+                    text: 'Check out this QR code!',
+                    url: qrImageUrl,
+                })
+                .then(() => console.log('QR code shared successfully'))
+                .catch((error) => console.error('Error sharing QR code:', error));
+            } else {
+                alert('Sharing is not supported in your browser. Please download the QR code instead.');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -13,7 +13,7 @@
         <p>As a Senior PHP Developer, I have extensive experience in developing and maintaining dynamic web applications. My expertise includes working with various PHP frameworks, optimizing database queries, and ensuring code quality through best practices and testing. I am passionate about coding and continuously learning new technologies to improve my skills and deliver high-quality solutions.</p>
         <!-- p>Senior PHP Developer</p -->
         <div class="btn-sci">
-            <a target="_blank" href="{{ asset('docs/DMohammad-it-en-2024-06.pdf') }}" class="btn">Download CV</a>
+            <a target="_blank" href="{{ route('download.cv') }}" class="btn">Download CV</a>
             <div class="sci">
                 <a target="_blank" href="https://www.linkedin.com/in/diaamohammad/"><i class='bx bxl-linkedin'></i></a>
                 <a target="_blank" href="https://github.com/diaahere89"><i class='bx bxl-github'></i></a>
@@ -123,13 +123,19 @@
                     <div class="resume-item">
                         <p class="year">Sept. 2020 - Present</p>
                         <h3>Senior PHP Developer</h3>
-                        <p class="company">Sinapto srl, Milan, Italy</p>
+                        <p class="company">
+                            <a target="_blank" href="https://sinapto.com/">Sinapto srl</a>
+                            <br>Milan, Italy
+                        </p>
                         <p>Working as part of a team in programming applications that are often web-based for clients.</p>
                     </div>
                     <div class="resume-item">
                         <p class="year">2019 - 2020</p>
                         <h3>Full Stack Developer</h3>
-                        <p class="company">Electro Adda S.p.A.<br>Beverate di Brivio, Brivio LC</p>
+                        <p class="company">
+                            <a target="_blank" href="https://www.electroadda.com/">Electro Adda S.p.A.</a>
+                            <br>Beverate di Brivio, Brivio LC
+                        </p>
                         <p>Design and development of the company digital platform for its technical catalogues and products.</p>
                     </div>
                 </div>

@@ -499,6 +499,11 @@ section.active {
     margin-left: -2rem;
 }
 
+.resume-item .company a {
+    color: var(--main-color);
+    text-decoration: none;
+}
+
 .resume-detail.skills .resume-list {
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     height: auto;
