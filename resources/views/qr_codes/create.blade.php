@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create QR Code</title>
+    <title>Create FREE QR Code</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Create QR Code</h1>
+        <h1 class="text-2xl font-bold mb-4">Create FREE QR Code</h1>
         <form action="{{ route('qr_codes.store') }}" method="POST" class="bg-white p-6 rounded-lg shadow-md">
             @csrf
             <div class="mb-4">
@@ -33,8 +33,41 @@
                     Active
                 </label>
             </div> --}}
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Create QR Code</button>
+            <!-- Submit Button and Loading Spinner -->
+            <div class="flex items-center gap-4">
+                <button type="submit" id="submitButton" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                    Create QR Code
+                </button>
+                <!-- Loading Spinner (Hidden by Default) -->
+                <div id="loadingSpinner" class="hidden">
+                    <svg class="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>
+            </div>
         </form>
     </div>
+
+    <script>
+        // Handle form submission
+        document.getElementById('qrCodeForm').addEventListener('submit', function (event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Hide the submit button
+            document.getElementById('submitButton').classList.add('hidden');
+
+            document.querySelectorAll('#qrCodeForm input, #qrCodeForm button, #qrCodeForm textarea').forEach(element => {
+                element.disabled = true;
+            });
+
+            // Show the loading spinner
+            document.getElementById('loadingSpinner').classList.remove('hidden');
+
+            // Submit the form programmatically
+            this.submit();
+        });
+    </script>
 </body>
 </html>

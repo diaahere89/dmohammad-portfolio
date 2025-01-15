@@ -52,6 +52,8 @@ class QrImageController extends Controller
             'expires_at'  => now()->addMonth(),
         ]);
 
+        session()->flash('success', 'QR code created successfully!');
+
         return redirect()->route('qr_codes.show', $qrImage->qr_code);
     }
 

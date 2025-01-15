@@ -11,6 +11,11 @@
     <div class="container mx-auto p-4">
         <h1 class="text-2xl font-bold mb-6">QR Code Details</h1>
         <div class="bg-white p-8 rounded-lg shadow-md">
+            @if(session('success'))
+                <div class="my-4 p-4 bg-green-100 text-green-700 rounded-lg">
+                    {{ session('success') }}
+                </div>
+            @endif
             <!-- Flex container for QR image and details -->
             <div class="flex flex-col md:flex-row gap-8">
                 <!-- QR Image (Left Side) -->
@@ -42,6 +47,14 @@
                             <i class="fas fa-share-alt"></i>
                             Share
                         </button>
+                    </div>
+
+                    <div class="mt-4 flex gap-4">
+                        <!-- Create New Button -->
+                        <a href="{{ route('qr_codes.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 shadow-md flex items-center gap-2">
+                            <i class="fas fa-plus"></i>
+                            Create New
+                        </a>
                     </div>
                 </div>
 
@@ -86,16 +99,28 @@
         // Share QR Code functionality
         function shareQRCode() {
             const qrImageUrl = document.getElementById('qrImage').src;
+            // Check if the Web Share API is supported
             if (navigator.share) {
                 navigator.share({
                     title: 'QR Code',
                     text: 'Check out this QR code!',
                     url: qrImageUrl,
                 })
-                .then(() => console.log('QR code shared successfully'))
-                .catch((error) => console.error('Error sharing QR code:', error));
+                .then(() => {
+                    alert('QR code shared successfully!');
+                })
+                .catch((error) => {
+                    alert('Error sharing QR code: ' + error.message);
+                });
             } else {
-                alert('Sharing is not supported in your browser. Please download the QR code instead.');
+                // Fallback: Copy the QR code URL to the clipboard
+                navigator.clipboard.writeText(qrImageUrl)
+                    .then(() => {
+                        alert('QR code URL copied to clipboard!');
+                    })
+                    .catch(() => {
+                        alert('Your browser does not support sharing or copying to clipboard.');
+                    });
             }
         }
     </script>
