@@ -48,26 +48,5 @@
             </div>
         </form>
     </div>
-
-    <script>
-        // Handle form submission
-        document.getElementById('qrCodeForm').addEventListener('submit', function (event) {
-            // Prevent the default form submission
-            event.preventDefault();
-
-            // Hide the submit button
-            document.getElementById('submitButton').classList.add('hidden');
-
-            document.querySelectorAll('#qrCodeForm input, #qrCodeForm button, #qrCodeForm textarea').forEach(element => {
-                element.disabled = true;
-            });
-
-            // Show the loading spinner
-            document.getElementById('loadingSpinner').classList.remove('hidden');
-
-            // Submit the form programmatically
-            this.submit();
-        });
-    </script>
 </body>
 </html>
