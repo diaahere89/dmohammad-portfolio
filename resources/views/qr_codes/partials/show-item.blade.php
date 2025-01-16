@@ -1,4 +1,7 @@
+@if ( Route::currentRouteName() == 'qr_codes.show' )
 <h1 class="text-2xl font-bold mb-6">QR Code Details</h1>
+@endif
+
 <div class="bg-white p-8 rounded-lg shadow-md">
     @if ( Route::currentRouteName() == 'qr_codes.show' && session('success') )
         <div class="my-4 p-4 bg-green-100 text-green-700 rounded-lg">
@@ -12,16 +15,22 @@
         <div class="w-full md:w-1/3 flex flex-col items-center">
             <!-- QR Image Container with Hover Effect -->
             <div class="relative group">
-                <!-- Loading Spinner -->
-                <div id="loadingSpinner" class="absolute inset-0 flex justify-center items-center bg-gray-200 bg-opacity-75 rounded-lg">
-                    <svg class="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                </div>
+                @if ( Route::currentRouteName() == 'qr_codes.show' )
+                    <!-- Loading Spinner -->
+                    <div id="loadingSpinner" class="absolute inset-0 flex justify-center items-center bg-gray-200 bg-opacity-75 rounded-lg">
+                        <svg class="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </div>
+                @endif
 
                 <!-- QR Image id="qrImage" -->
-                <img src="{{ $qrImage->createDataUri() ?? '' }}" alt="QR Code" class="w-48 h-48 rounded-lg shadow-inner" onload="document.getElementById('loadingSpinner').style.display = 'none'">
+                <img src="{{ $qrImage->createDataUri() ?? '' }}" alt="QR Code" class="w-48 h-48 rounded-lg shadow-inner" 
+                    @if ( Route::currentRouteName() == 'qr_codes.show' )
+                        onload="document.getElementById('loadingSpinner').style.display = 'none'"
+                    @endif
+                    >
             </div>
 
             <!-- Buttons (Download and Share) -->

@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class QrImageController extends Controller
 {
+    public function index()
+    {
+        $qrCodes = QrImage::all();
+        return view('qr_codes.index', compact('qrCodes'));
+    }
+
     public function create()
     {
         return view('qr_codes.create');
