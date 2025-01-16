@@ -9,7 +9,7 @@ class QrImageController extends Controller
 {
     public function index()
     {
-        $qrCodes = QrImage::all();
+        $qrCodes = QrImage::paginate(3);
         return view('qr_codes.index', compact('qrCodes'));
     }
 

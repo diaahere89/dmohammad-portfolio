@@ -63,9 +63,11 @@
         <div class="w-full md:w-2/3">
             <!-- Grid layout for labels and values -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {{-- <!-- Desired URL -->
-                <div class="font-bold text-gray-700">Desired URL:</div>
-                <div class="text-gray-900 break-words">{{ $qrImage->desired_url }}</div> --}}
+                @if (Route::currentRouteName() == 'qr-codes.index')
+                    <!-- Desired URL -->
+                    <div class="font-bold text-gray-700">Desired URL:</div>
+                    <div class="text-gray-900 break-words"><a target="_blank" href="{{ $qrImage->desired_url }}">{{ $qrImage->desired_url }}</a></div>
+                @endif
 
                 <!-- Created By -->
                 <div class="font-bold text-gray-700">Created By:</div>

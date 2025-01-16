@@ -21,6 +21,12 @@
             @include('qr_codes.partials.show-item')
             <hr class="my-4">
         @endforeach
+        
+        <!-- Pagination Links -->
+        <div class="mt-6">
+            {{ $qrCodes->links() }}
+        </div>
     </div>
+
 </body>
 </html>
