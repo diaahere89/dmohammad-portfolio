@@ -449,6 +449,8 @@
                 <h2 class="heading">Contact <span>Me!</span></h2>
                 <div class="field-box">
                     @csrf
+                    @honeypot
+                    
                     <input name="full_name" type="text" placeholder="Full Name" required>
                     <input name="email_address" type="email" placeholder="Email Address" required>
                     <input name="phone_number" type="text" placeholder="Phone Number" required>
